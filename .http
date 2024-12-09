@@ -3,7 +3,7 @@ GET https://api.example.com/users
 Authorization: Bearer your_api_token
 
 ### POST Request Example
-POST http://localhost:3000/send-otp
+POST https://vistasbackend.vercel.app/send-otp
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### POST Request Example
-POST http://localhost:3000/verify-otp
+POST https://vistasbackend.vercel.app/verify-otp
 Content-Type: application/json
 
 {
