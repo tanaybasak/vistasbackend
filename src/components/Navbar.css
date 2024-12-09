@@ -1,0 +1,15 @@
+.logo {
+    cursor: pointer;
+}
+
+.appBar {
+    background-color: transparent !important;
+    color: #000;
+    border-bottom: 1px solid #ECEDEE;
+    .appBar_toolbar {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        gap: 2
+    }
+}

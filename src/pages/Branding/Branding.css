@@ -1,0 +1,10 @@
+.branding_container {
+    display: grid;
+    gap: 20px 10px;
+    padding: 1rem;
+    margin: 0 auto;
+    width: calc(100% - 15rem);
+    max-width: 82rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    place-items: center;
+}

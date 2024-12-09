@@ -1,0 +1,89 @@
+/* Login box container */
+
+.order-page {
+    background-color: #F4F7FF;
+    display: grid;
+    place-items: center;
+    min-height: calc(100vh - 140px);
+}
+
+.order-box {
+    background-color: #fff;
+    padding: 80px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 40rem;
+    text-align: center;
+}
+
+
+/* Heading style */
+
+.order-heading {
+    font-weight: bold !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.order-subtitle {
+    margin-bottom: 3rem !important;
+}
+
+.table_row {
+    box-shadow: none !important;
+}
+
+
+/* Country code */
+
+.country-code {
+    color: #999;
+    padding-right: 0.25rem;
+}
+
+
+/* Terms and policy text */
+
+.terms-text {
+    color: #666;
+    font-size: 14px;
+    margin-top: 1rem;
+    margin-bottom: 2rem !important;
+}
+
+.terms-text span {
+    color: #3b56f0;
+    cursor: pointer;
+}
+
+
+/* Continue button */
+
+.order_btn {
+    margin-top: 2rem !important;
+}
+
+.order_content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    .address_text {
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+        height: 1rem;
+    }
+}
+
+.table_content {
+    font-weight: bold !important;
+    font-size: 16px !important;
+    vertical-align: super !important;
+}
+
+.total_price {
+    color: #2E3CCE !important;
+    border: 0 !important;
+}
+
+.tableitems {
+    line-height: 30px;
+}

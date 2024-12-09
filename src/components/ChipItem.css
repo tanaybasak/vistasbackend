@@ -1,0 +1,13 @@
+.chip_tags .chip {
+    border-radius: 8px;
+    padding: 8px;
+    border: 1.5px solid #777777;
+    color: #777777;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.chip_tags .chip.selected {
+    background-color: #777777 !important;
+    color: #fff;
+}

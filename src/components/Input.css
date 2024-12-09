@@ -1,0 +1,12 @@
+.input_field {
+    padding: 16px 12px;
+    border: 1px solid #D1D4D7;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.otp_text {
+    text-align: center;
+}

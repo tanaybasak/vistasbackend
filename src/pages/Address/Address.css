@@ -1,0 +1,70 @@
+/* Login box container */
+
+.address-page {
+    background-color: #F4F7FF;
+    display: grid;
+    place-items: center;
+    min-height: calc(100vh - 140px);
+}
+
+.address-box {
+    background-color: #fff;
+    padding: 80px 60px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 40rem;
+    text-align: center;
+}
+
+
+/* Heading style */
+
+.address-heading {
+    font-weight: bold !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.address-subtitle {
+    margin-bottom: 3rem !important;
+}
+
+
+/* Country code */
+
+.country-code {
+    color: #999;
+    padding-right: 0.25rem;
+}
+
+
+/* Terms and policy text */
+
+.terms-text {
+    color: #666;
+    font-size: 14px;
+    margin-top: 1rem;
+    margin-bottom: 2rem !important;
+}
+
+.terms-text span {
+    color: #3b56f0;
+    cursor: pointer;
+}
+
+
+/* Continue button */
+
+.address_btn {
+    margin-top: 2rem !important;
+}
+
+.address_content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    .address_text {
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+        height: 1rem;
+    }
+}

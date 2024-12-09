@@ -1,0 +1,55 @@
+.student_form_container {
+    padding: 4rem;
+    background-color: #F4F7FF;
+    .assignment_container {
+        display: grid;
+        gap: 20px 10px;
+        padding: 1rem;
+        margin: 0 auto;
+        width: calc(100% - 15rem);
+        max-width: 82rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        place-items: start;
+        .assignment_textField.error {
+            border: 1px solid red;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .assignment_textField {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 12px 10px;
+            border-radius: 8px;
+            border: 1px solid #D1D4D7;
+        }
+        .submit_btn {
+            border-radius: 8px;
+            text-transform: none;
+            padding: 10px 25px;
+        }
+        .seperator {
+            justify-self: center;
+            align-self: center;
+            /* Center the submit button horizontally */
+        }
+    }
+    .student_heading {
+        display: grid;
+        place-items: center;
+        margin: 0 auto;
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 5rem;
+    }
+    .whatsapp_updates {
+        background-color: #fff;
+        color: #000;
+        font-size: 20px;
+        padding: 20px;
+        border-radius: 12px;
+        font-weight: bold;
+    }
+}

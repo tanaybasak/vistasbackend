@@ -1,0 +1,87 @@
+.form {
+    .form_heading {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .form_subtitle {
+        display: flex;
+        flex-direction: column;
+        .form_sub {
+            font-weight: 500;
+        }
+    }
+    .drag_drop {
+        background-color: #F3F7FF;
+    }
+    .design {
+        background-color: #F6FFEA;
+    }
+    .drag_btn,
+    .design_btn {
+        padding: 10px 16px;
+        border-radius: 10px;
+        text-transform: none;
+    }
+    .design_btn {
+        background-color: #0E753B;
+    }
+    .chip_tags {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        .remove_btn,
+        .add_btn,
+        .quantity {
+            border-radius: 8px;
+            height: 2.5rem;
+            width: 4rem;
+            color: #2E3CCE;
+        }
+        .quantity {
+            background-color: #ECEDEE;
+            border: none;
+            padding: 5px;
+            color: #000;
+            outline: none;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .quantity:focus {
+            border: none;
+            /* Removes border on focus */
+            outline: none;
+            /* Ensures no outline on focus */
+        }
+    }
+    .drag_design_upload {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        .price {
+            color: #2E3CCE;
+            font-size: 24px;
+        }
+        .print_btn {
+            border-radius: 8px;
+        }
+    }
+}
+
+
+/* For Chrome, Edge, Safari */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    /* Hides the buttons */
+    margin: 0;
+    /* Removes default margin */
+}
+
+
+/* For Firefox */
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    /* Removes the buttons */
+}
