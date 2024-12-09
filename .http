@@ -1,0 +1,20 @@
+### GET Request Example
+GET https://api.example.com/users
+Authorization: Bearer your_api_token
+
+### POST Request Example
+POST http://localhost:3000/send-otp
+Content-Type: application/json
+
+{
+  "phoneNumber": "+918638974203"
+}
+
+### POST Request Example
+POST http://localhost:3000/verify-otp
+Content-Type: application/json
+
+{
+  "phoneNumber": "+918638974203",
+  "code": "0563"
+}
