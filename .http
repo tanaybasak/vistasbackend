@@ -1,0 +1,56 @@
+### GET Request Example
+GET https://api.example.com/users
+Authorization: Bearer your_api_token
+
+### POST Request Example
+POST https://vistasbackend.vercel.app/send-otp
+Content-Type: application/json
+
+{
+  "phoneNumber": "+918638974203"
+}
+
+### POST Request Example
+POST https://vistasbackend.vercel.app/verify-otp
+Content-Type: application/json
+
+{
+  "phoneNumber": "+918638974203",
+  "code": "0563"
+}
+
+### SAVE ENQUIRY
+POST http://localhost:3000/api/enquiry/createEnquiry
+Content-Type: application/json
+
+{
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "description": "Feedback on API",
+    "number":86493423,
+    "type": "bulk"
+}
+
+
+### ORDER
+POST http://localhost:3000/api/order/placeOrder
+Content-Type: application/json
+
+{
+    "userId": "Jane Doe",
+    "amount": 1000
+}
+
+
+### AMOUNT
+POST http://localhost:3000/api/amount/saveAmountDetails
+Content-Type: application/json
+
+{
+   "amount": 300, "phoneNumber":"+918638974202", "deliveryCharges": 50, "gst":0.05 
+}
+
+
+### GETAMOUNT
+GET http://localhost:3000/api/amount/getAmountDetails/+918638974203
+Content-Type: application/json
