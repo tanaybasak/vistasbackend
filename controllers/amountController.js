@@ -6,11 +6,11 @@ const Amount = require('../models/amount');
  * Create a new user
  */
 const saveAmount = async(req, res) => {
-    const { amount, phoneNumber, deliveryCharges, gst } = req.body;
+    const { amount, phoneNumber, deliveryCharges, gst, itemName } = req.body;
 
     // Check if all required fields are present
-    if (!amount || !phoneNumber || !deliveryCharges || !gst) {
-        return res.status(400).json({ error: "Phone number, amount, GST, and delivery charges are required." });
+    if (!amount || !phoneNumber || !deliveryCharges || !gst || !itemName) {
+        return res.status(400).json({ error: "Phone number, amount, GST, itemName and delivery charges are required." });
     }
 
     // Validate the phone number (e.g., 10-digit format)
@@ -24,7 +24,7 @@ const saveAmount = async(req, res) => {
         const totalAmount = amount + deliveryCharges + (gst * amount);
 
         // Create a new Amount document
-        const newAmountDetails = new Amount({ amount, phoneNumber, deliveryCharges, gst, totalAmount });
+        const newAmountDetails = new Amount({ itemName, amount, phoneNumber, deliveryCharges, gst, totalAmount });
 
         // Save the document to MongoDB
         await newAmountDetails.save();
@@ -38,10 +38,9 @@ const saveAmount = async(req, res) => {
 };
 
 const getAmount = async(req, res) => {
-    console.log('fdf');
     const { phoneNumber } = req.params;
     try {
-        const amountDetails = await Amount.findOne({ phoneNumber });
+        const amountDetails = await Amount.findOne({ phoneNumber }).sort({ createdAt: -1 });
 
         if (!amountDetails) {
             return res.status(404).json({ error: 'Amount details not found for this phone number.' });
