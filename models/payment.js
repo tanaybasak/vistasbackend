@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // User Schema
-const orderSchema = new mongoose.Schema({
+const paymentSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -17,4 +17,4 @@ const orderSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model('Orders', orderSchema);
+module.exports = mongoose.model('Payment', paymentSchema);

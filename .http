@@ -47,10 +47,32 @@ POST http://localhost:3000/api/amount/saveAmountDetails
 Content-Type: application/json
 
 {
-   "amount": 300, "phoneNumber":"+918638974202", "deliveryCharges": 50, "gst":0.05 
+   "itemName": "test" ,"amount": 300, "phoneNumber":"+918638974202", "deliveryCharges": 50, "gst":0.05 
 }
 
 
 ### GETAMOUNT
 GET http://localhost:3000/api/amount/getAmountDetails/+918638974203
+Content-Type: application/json
+
+
+### BRANDING
+POST http://localhost:3000/api/branding/saveBranding
+Content-Type: application/json
+
+{
+  "itemId": 1,
+  "itemName": "Example Item",
+  "description": "This is an example description.",
+  "texture": "Smooth",
+  "corners": "Rounded",
+  "uploadDesign": "http://example.com/design.png",
+  "itemImg": "http://example.com/image.png",
+  "quantity": 10,
+  "amount": 100.0,
+  "details": "Additional details here."
+}
+
+### BRANDING
+GET http://localhost:3000/api/branding/getBranding/15
 Content-Type: application/json

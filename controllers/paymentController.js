@@ -1,6 +1,6 @@
 const Razorpay = require("razorpay");
-const connectToDatabase = require("../db/connection");
 const crypto = require("crypto");
+const Order = require("../models/payment");
 require("dotenv").config();
 
 const razorpay = new Razorpay({
@@ -11,7 +11,7 @@ const razorpay = new Razorpay({
 /**
  * Create a new user
  */
-const createOrder = async(req, res) => {
+const createPayment = async(req, res) => {
     console.log(req.body);
     const { amount, userId } = req.body;
     if (!amount || !userId) {
@@ -27,17 +27,12 @@ const createOrder = async(req, res) => {
 
         };
         const response = await razorpay.orders.create(options);
-        console.log(response)
-        const client = await connectToDatabase();
-        const database = client.db("printvistas"); // Replace with your database name
-        const collection = database.collection("orders"); // Replace with your collection name
-        const newOrder = { amount, userId };
-        const result = await collection.insertOne(newOrder);
-
+        // Replace with your collection name
+        const newOrder = new Order({ amount, userId });
+        await newOrder.save();
 
 
         res.status(200).json({
-            userId: result.insertedId,
             order_id: response.id,
             currency: response.currency,
             amount: response.amount,
@@ -63,6 +58,6 @@ const verifyPayment = async(req, res) => {
 };
 
 module.exports = {
-    createOrder,
+    createPayment,
     verifyPayment,
 };
