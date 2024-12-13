@@ -57,7 +57,7 @@ Content-Type: application/json
 
 
 ### BRANDING
-POST http://localhost:3000/api/branding/saveBranding
+POST https://vistasbackend.vercel.app/api/branding/saveBranding
 Content-Type: application/json
 
 {

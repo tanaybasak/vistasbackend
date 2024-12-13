@@ -5,13 +5,12 @@ const paymentSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
     amount: {
         type: Number,
         required: true,
-        unique: true,
-        trim: true,
+        trim: true
     }
 }, {
     timestamps: true,
