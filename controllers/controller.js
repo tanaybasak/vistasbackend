@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-
 const otpStore = new Map(); // Temporary in-memory OTP store for simplicity
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
-    service: 'Gmail', // Or any email provider
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // Or any email provider
     auth: {
         user: process.env.EMAIL_USER, // Your email address
         pass: process.env.EMAIL_PASS, // Your email password (or app password for Gmail)

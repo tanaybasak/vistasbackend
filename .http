@@ -1,4 +1,7 @@
 ### GET Request Example
+
+GET http://localhost:3000/
+
 GET https://api.example.com/users
 Authorization: Bearer your_api_token
 
@@ -7,16 +10,16 @@ POST http://localhost:3000/api/otp/send-otp
 Content-Type: application/json
 
 {
-  "email": "tanoybasak01@gmail.com"
+  "email": "tanoybasak@gmail.com"
 }
 
 ### POST Request Example
-POST https://vistasbackend.vercel.app/verify-otp
+POST http://localhost:3000/api/otp/verify-otp
 Content-Type: application/json
 
 {
-  "phoneNumber": "+918638974203",
-  "code": "0563"
+  "email": "tanoybasak@gmail.com",
+  "code": "580785"
 }
 
 ### SAVE ENQUIRY
