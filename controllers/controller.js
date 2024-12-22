@@ -1,33 +1,52 @@
-const twilio = require('twilio');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
-const accountSid = process.env.accountSid;
-const authToken = process.env.authToken;
-const verifyServiceSid = process.env.serviceId;
+const otpStore = new Map(); // Temporary in-memory OTP store for simplicity
 
-const client = twilio(accountSid, authToken);
+// Configure nodemailer transporter
+const transporter = nodemailer.createTransport({
+    service: 'Gmail', // Or any email provider
+    auth: {
+        user: process.env.EMAIL_USER, // Your email address
+        pass: process.env.EMAIL_PASS, // Your email password (or app password for Gmail)
+    },
+});
 
 /**
- * Send OTP to the user's phone number
+ * Generate a 6-digit OTP
+ */
+function generateOtp() {
+    return crypto.randomInt(100000, 999999).toString();
+}
+
+/**
+ * Send OTP to the user's email
  */
 const sendOtp = async(req, res) => {
-    const { phoneNumber } = req.body;
+    const { email } = req.body;
 
-    if (!phoneNumber) {
-        return res.status(400).json({ error: 'Phone number is required.' });
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required.' });
     }
 
+    const otp = generateOtp();
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER, // Sender email
+        to: email, // Receiver email
+        subject: 'Your OTP Code',
+        text: `Your OTP code is: ${otp}. It is valid for 5 minutes.`,
+    };
+
     try {
-        const verification = await client.verify.v2
-            .services(verifyServiceSid)
-            .verifications.create({
-                to: phoneNumber,
-                channel: 'sms', // Can be 'sms', 'email', or 'whatsapp'
-            });
+        await transporter.sendMail(mailOptions);
+
+        // Store the OTP in memory with an expiry time
+        otpStore.set(email, { otp, expiresAt: Date.now() + 5 * 60 * 1000 });
 
         return res.status(200).json({
             success: true,
             message: 'OTP sent successfully.',
-            status: verification.status,
         });
     } catch (error) {
         console.error('Error sending OTP:', error.message);
@@ -42,38 +61,37 @@ const sendOtp = async(req, res) => {
  * Verify the OTP provided by the user
  */
 const verifyOtp = async(req, res) => {
-    const { phoneNumber, code } = req.body;
+    const { email, code } = req.body;
 
-    if (!phoneNumber || !code) {
-        return res.status(400).json({ error: 'Phone number and OTP code are required.' });
+    if (!email || !code) {
+        return res.status(400).json({ error: 'Email and OTP code are required.' });
     }
 
-    try {
-        const verificationCheck = await client.verify.v2
-            .services(verifyServiceSid)
-            .verificationChecks.create({
-                to: phoneNumber,
-                code: code,
-            });
+    const storedOtp = otpStore.get(email);
 
-        if (verificationCheck.status === 'approved') {
-            return res.status(200).json({
-                success: true,
-                message: 'OTP verified successfully.',
-            });
-        } else {
-            return res.status(400).json({
-                success: false,
-                message: 'Invalid OTP. Please try again.',
-            });
-        }
-    } catch (error) {
-        console.error('Error verifying OTP:', error.message);
-        return res.status(500).json({
-            success: false,
-            error: 'Failed to verify OTP. Please try again later.',
+    if (!storedOtp) {
+        return res.status(400).json({ error: 'No OTP sent to this email or it has expired.' });
+    }
+
+    const { otp, expiresAt } = storedOtp;
+
+    if (Date.now() > expiresAt) {
+        otpStore.delete(email);
+        return res.status(400).json({ error: 'OTP has expired. Please request a new one.' });
+    }
+
+    if (otp === code) {
+        otpStore.delete(email); // Clear OTP after successful verification
+        return res.status(200).json({
+            success: true,
+            message: 'OTP verified successfully.',
         });
     }
+
+    return res.status(400).json({
+        success: false,
+        message: 'Invalid OTP. Please try again.',
+    });
 };
 
 module.exports = {
