@@ -6,7 +6,7 @@ GET https://api.example.com/users
 Authorization: Bearer your_api_token
 
 ### POST Request Example
-POST http://localhost:3000/api/otp/send-otp
+POST https://vistasbackend.vercel.app/api/otp/send-otp
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "name": "Jane Doe",
-    "email": "jane.doe@example.com",
+    "email": "janp.doe@example.com",
     "description": "Feedback on API",
     "number":86493423,
     "type": "bulk"
